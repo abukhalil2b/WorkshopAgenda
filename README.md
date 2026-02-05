@@ -14,26 +14,21 @@
 إذا أردت تشغيل الكود المصدري والتعديل عليه:
 
 1. **تحميل المشروع:**
-   ```bash
-   git clone [https://github.com/USERNAME/workshop-agenda-timer.git](https://github.com/USERNAME/workshop-agenda-timer.git)
-
-   ```bach
-   npm install
-   npm start
+```bash
+npm install
+npm start
+```
 
 استخراج النسخة التنفيذية (Build)
 
 لتحويل المشروع إلى ملف تنفيذي (.exe أو .app):
 
 ```bash
-   npm run make
+npm run make
+```
 
 التقنيات المستخدمة
 
-    Electron.js: لبناء تطبيق سطح المكتب.
-
-    HTML5 & CSS3: لتصميم الواجهة (Glassmorphism Style).
-
-    JavaScript: للمنطق البرمجي وإدارة المؤقت.
-
-   **ملاحظة:** في السطر الخاص بـ `git clone`، استبدل كلمة `USERNAME` باسم مستخدمك في GitHub.
+Electron.js
+HTML5 & CSS3 (Glassmorphism Style).
+JavaScript
