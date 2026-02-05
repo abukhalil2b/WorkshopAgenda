@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الجدول الزمني للورشة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #1e1e1e;
+            --bg-card: #252526;
+            --text-primary: #ffffff;
+            --accent-blue: #0078d4;
+            --accent-green: #107c10;
+            --accent-red: #e81123;
+        }
+
+        * { box-sizing: border-box; outline: none; user-select: none; }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Cairo', sans-serif;
+            margin: 0; padding: 0;
+            height: 100vh;
+            display: flex; flex-direction: column;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        /* شريط العنوان */
+        #title-bar {
+            -webkit-app-region: drag;
+            background: #333;
+            padding: 10px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .window-controls button {
+            -webkit-app-region: no-drag;
+            background: none; border: none; color: white; cursor: pointer; font-size: 16px; margin-right: 8px;
+        }
+        .window-controls button:hover { color: var(--accent-red); }
+
+        /* المحتوى */
+        #content {
+            padding: 15px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        /* شكل شريط التمرير */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+
+        /* البطاقات */
+        .agenda-item {
+            background: var(--bg-card);
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-right: 4px solid #444;
+            transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .agenda-item.active {
+            background: #2d2d2d;
+            border-right-color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(16, 124, 16, 0.3);
+            transform: scale(1.01);
+        }
+
+        /* النصوص */
+        .item-info { flex-grow: 1; margin-left: 10px; }
+        .title-input {
+            background: transparent; border: none; color: white;
+            font-family: 'Cairo'; font-size: 16px; font-weight: 700; width: 100%;
+            display: block; margin-bottom: 4px;
+        }
+        .time-wrapper { font-size: 12px; color: #aaa; display: flex; align-items: center; gap: 5px; }
+        .time-input {
+            background: #333; border: none; color: var(--accent-blue);
+            text-align: center; width: 40px; border-radius: 4px; font-weight: bold;
+        }
+
+        /* العداد والأزرار */
+        .controls-wrapper { display: flex; align-items: center; gap: 10px; }
+        .timer-display {
+            font-size: 22px; font-weight: 900; color: var(--accent-green);
+            min-width: 60px; text-align: center;
+        }
+        .icon-btn {
+            background: #333; border: none; color: white;
+            width: 35px; height: 35px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 14px; transition: 0.2s;
+        }
+        .icon-btn:hover { background: #444; }
+        .delete-btn:hover { background: var(--accent-red); }
+
+        /* زر الإضافة العائم */
+        #fab-add {
+            position: absolute; bottom: 20px; left: 20px;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: var(--accent-blue); color: white; border: none;
+            font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+        }
+        #fab-add:hover { background: #0063b1; }
+    </style>
+</head>
+<body>
+    <div id="title-bar">
+        <span style="font-weight:bold">📋 الجدول الزمني  </span>
+        <div class="window-controls">
+            <button onclick="minimizeApp()">&#8211;</button>
+            <button onclick="closeApp()">&#10005;</button>
+        </div>
+    </div>
+
+    <div id="content"></div>
+
+    <button id="fab-add" onclick="addNewItem()" title="إضافة فقرة">+</button>
+    <audio id="audio-player" src="./alarm.mp3"></audio>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

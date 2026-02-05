@@ -1,0 +1,11 @@
+# ملفات النظام والمكتبات الضخمة
+node_modules/
+.DS_Store
+
+# ملفات البناء (لا ترفعها للكود)
+/out
+/make
+workshop_agenda-darwin-x64/
+
+# ملفات مؤقتة
+*.log
